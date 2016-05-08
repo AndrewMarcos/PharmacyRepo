@@ -82,7 +82,6 @@ public class LoginActivity extends AppCompatActivity {
                         LoginActivity.this.startActivity(mainIntent);
                         LoginActivity.this.finish();
 
-
                     }
 
                 }
@@ -105,10 +104,12 @@ public class LoginActivity extends AppCompatActivity {
         address =mAddressView.getText().toString();
         telephone = mPhoneView.getText().toString();
         mobile = mMobileView.getText().toString();
+        String mobileNo = ""+mobile.charAt(0)+mobile.charAt(1)+mobile.charAt(2)+mobile.charAt(3)+" "+mobile.charAt(4)+mobile.charAt(5)+mobile.charAt(6)
+        +" "+mobile.charAt(7)+mobile.charAt(8)+mobile.charAt(9)+mobile.charAt(10);
         code = mCodeView.getText().toString();
         myId=this.id+1;
         String data = "entry.902841453=" + URLEncoder.encode(name)+"&"+ "entry.1743281797=" + URLEncoder.encode(address)+"&"+
-                "entry.1507940231=" + URLEncoder.encode(telephone)+"&"+ "entry.1447172494=" + URLEncoder.encode(mobile)+"&"+
+                "entry.1507940231=" + URLEncoder.encode(telephone)+"&"+ "entry.1447172494=" + URLEncoder.encode(mobileNo)+"&"+
                 "entry.433899888=" + URLEncoder.encode(code)+"&" + "entry.551037592=" + URLEncoder.encode(myId+"");
         String response = mReq.sendPost(fullUrl, data);
     }
