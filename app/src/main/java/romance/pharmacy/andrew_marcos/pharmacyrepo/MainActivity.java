@@ -32,20 +32,14 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 switch(i){
-                    case 0:Intent in = new Intent(MainActivity.this, SendMedicalList.class);
+                    case 0:;break;
+                    case 1:Intent in = new Intent(MainActivity.this, Medical_Data_Deliveries.class);
                         startActivity(in);break;
-                    case 1:;break;
+
                 }
             }
         });
-                FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
+
     }
 
     @Override
