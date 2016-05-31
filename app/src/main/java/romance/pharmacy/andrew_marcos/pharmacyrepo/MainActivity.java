@@ -22,9 +22,8 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        ArrayList<String> menuList = new ArrayList<String>(3);
-        menuList.add(0,"استشر طبيبك");
-        menuList.add(1,"ارسل روشتة");
+        String[] menuList =getResources().getStringArray(R.array.menu_items);
+
         GridView mainGridView = (GridView)findViewById(R.id.gridView);
         MainMenuAdapter mainMenuAdapter = new MainMenuAdapter(menuList,this);
         mainGridView.setAdapter(mainMenuAdapter);

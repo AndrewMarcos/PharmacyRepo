@@ -17,25 +17,27 @@ import java.util.ArrayList;
  * Created by MorcosS on 5/31/16.
  */
 public class MainMenuAdapter extends BaseAdapter {
-    ArrayList<String> list;
+    String [] list;
     LayoutInflater inflater;
     Activity activity;
+    String [] images;
 
 
-    public MainMenuAdapter(ArrayList<String> list, Activity activity) {
+    public MainMenuAdapter(String[] list, Activity activity) {
         inflater = activity.getLayoutInflater();
         this.list = list;
         this.activity = activity;
+        images= activity.getResources().getStringArray(R.array.menu_pics);
     }
 
     @Override
     public int getCount() {
-        return list.size();
+        return list.length;
     }
 
     @Override
     public Object getItem(int i) {
-        return list.get(i);
+        return list[i];
     }
 
     @Override
@@ -49,11 +51,11 @@ public class MainMenuAdapter extends BaseAdapter {
         ImageView image = (ImageView) view.findViewById(R.id.imageView);
         TextView textView = (TextView) view.findViewById(R.id.textView);
         switch(i) {
-            case 0:Picasso.with(activity).load("http://previews.123rf.com/images/vectorikart/vectorikart1506/vectorikart150600017/41171471-Modern-flat-vector-illustration-of-a-smiling-young-attractive-female-pharmacist-at-the-counter-in-a--Stock-Vector.jpg").into(image);break;
-            case 1: Picasso.with(activity).load("http://www.clker.com/cliparts/7/9/5/0/11971562571757911274tulipan_Pharmaceutical_carton_1.svg.med.png").into(image);break;
+            case 0:Picasso.with(activity).load(images[0]).into(image);break;
+            case 1: Picasso.with(activity).load(images[1]).into(image);break;
 
         }
-        textView.setText(list.get(i));
+        textView.setText(list[i]);
         return view;
 
     }

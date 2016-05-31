@@ -39,9 +39,7 @@ public class LoginActivity extends AppCompatActivity {
             LoginActivity.this.finish();
         }else {
             checkedMySheet = false;
-
             String url = res.getString(R.string.Regestiration_Sheet);
-            Log.v("hi",url);
             final UsersIds usersIds = new UsersIds(url, getBaseContext());
             counter = 0;
             mEmailView = (AutoCompleteTextView) findViewById(R.id.email);

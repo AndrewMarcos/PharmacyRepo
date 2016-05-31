@@ -18,12 +18,19 @@
         android:padding="15sp"
         android:layout_gravity="center_horizontal"/>
     <ListView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_height="380dp"
         android:id="@+id/listView"
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="ارسال الطلب"
+        android:id="@+id/button2"
+        android:layout_gravity="center_horizontal" />
 
 
 </LinearLayout>
