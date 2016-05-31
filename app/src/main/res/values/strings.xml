@@ -16,10 +16,10 @@
     <string name="error_invalid_password">كلمة السر قصيرة</string>
     <string name="error_incorrect_password">كلمة السر خطأ</string>
     <string name="Regestiration_Sheet">https://spreadsheets.google.com/feeds/list/1vCINRHNp8yrdvjJkn_KA5c_WnhoRVeczySwNA7yhRh0/2/public/values?alt=json</string>
-    <string name="Regestiration_Forms">"https://docs.google.com/forms/d/1m1dhRzcPNagVxO28uH-7uebB8sZ1gC1TyNx-iFVM498/formResponse"</string>
+    <string name="Regestiration_Forms">https://docs.google.com/forms/d/1m1dhRzcPNagVxO28uH-7uebB8sZ1gC1TyNx-iFVM498/formResponse</string>
     <string name="error_field_required">This field is required</string>
-    <string name="permission_rationale">"Contacts permissions are needed for providing email
-    completions."</string>
+    <string name="permission_rationale">Contacts permissions are needed for providing email
+    completions.</string>
     <string-array name="menu_items">
         <item>استشر طبيبك</item>
         <item>ارسل روشتة</item>
@@ -28,5 +28,6 @@
         <item>http://previews.123rf.com/images/vectorikart/vectorikart1506/vectorikart150600017/41171471-Modern-flat-vector-illustration-of-a-smiling-young-attractive-female-pharmacist-at-the-counter-in-a--Stock-Vector.jpg</item>
         <item>http://www.clker.com/cliparts/7/9/5/0/11971562571757911274tulipan_Pharmaceutical_carton_1.svg.med.png</item>
         </string-array>
+    <string name="Delivery_Forms">https://docs.google.com/forms/d/1eSyEMUubmHMJsihpw_9sPhDIlhNJKvtl7LRrqf7gzSk/formResponse</string>
 
 </resources>

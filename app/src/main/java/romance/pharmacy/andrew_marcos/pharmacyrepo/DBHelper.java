@@ -59,6 +59,11 @@ public class DBHelper extends SQLiteOpenHelper {
 
     }
 
+    public void deleteOrder(int id){
+        SQLiteDatabase db = this.getReadableDatabase();
+        db.delete("Order_Items","Order_ID = "+id,null);
+    }
+
 
 
 }

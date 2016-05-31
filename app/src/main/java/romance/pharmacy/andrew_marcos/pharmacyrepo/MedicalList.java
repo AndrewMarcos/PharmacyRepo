@@ -27,12 +27,14 @@ public class MedicalList extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_medical_list);
+        imageInBase64="No Image";
         dbHelper = new DBHelper(this);
         final EditText message = (EditText) findViewById(R.id.editText);
         Button saveButton = (Button) findViewById(R.id.button);
         Cursor cursor = dbHelper.getOrder();
         try {
            length = cursor.getCount();
+            Log.e("helllo",length+"");
         }catch (Exception e){
            length =0;
         }
