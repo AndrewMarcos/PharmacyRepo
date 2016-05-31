@@ -2,9 +2,11 @@ package romance.pharmacy.andrew_marcos.pharmacyrepo;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.res.Resources;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
@@ -22,9 +24,11 @@ public class LoginActivity extends AppCompatActivity {
     public static int id;
     public static boolean checkedMySheet;
     public static int counter;
+    Resources res;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        res = getResources();
         SharedPreferences sharedPref =  getApplicationContext().getSharedPreferences("SharedPreference",Activity.MODE_PRIVATE);
         final SharedPreferences.Editor editor = sharedPref.edit();
         boolean isRegistered = sharedPref.getBoolean("IsRegistered",false);
@@ -35,7 +39,9 @@ public class LoginActivity extends AppCompatActivity {
             LoginActivity.this.finish();
         }else {
             checkedMySheet = false;
-            String url = "https://spreadsheets.google.com/feeds/list/1vCINRHNp8yrdvjJkn_KA5c_WnhoRVeczySwNA7yhRh0/3/public/values?alt=json";
+
+            String url = res.getString(R.string.Regestiration_Sheet);
+            Log.v("hi",url);
             final UsersIds usersIds = new UsersIds(url, getBaseContext());
             counter = 0;
             mEmailView = (AutoCompleteTextView) findViewById(R.id.email);
@@ -95,8 +101,7 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     public void postData() {
-
-        String fullUrl = "https://docs.google.com/forms/d/1m1dhRzcPNagVxO28uH-7uebB8sZ1gC1TyNx-iFVM498/formResponse";
+        String fullUrl = res.getString(R.string.Regestiration_Forms);
         HttpRequest mReq = new HttpRequest();
         String name,address,telephone,mobile,code;
         int myId;

@@ -1,19 +1,21 @@
 <resources>
-    <string name="app_name">Romance Pharmacy</string>
+    <string name="app_name">صيدلية رومانس</string>
     <string name="action_settings">Settings</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
-    <string name="title_activity_login">Register</string>
-    <string name="prompt_email" translatable="false">Name</string>
-    <string name="prompt_password" translatable="false">Address</string>
-    <string name="prompt_phone" translatable="false">Write your Phone No.</string>
-    <string name="prompt_mobile" translatable="false">Write your Mobile No.</string>
-    <string name="prompt_code" translatable="false">Write your code</string>
-    <string name="action_sign_in">Register</string>
-    <string name="action_sign_in_short">Register</string>
-    <string name="error_invalid_email">This email address is invalid</string>
-    <string name="error_invalid_password">This password is too short</string>
-    <string name="error_incorrect_password">This password is incorrect</string>
+    <string name="title_activity_login">التسجيل</string>
+    <string name="prompt_email" translatable="false">الاسم</string>
+    <string name="prompt_password" translatable="false">العنوان</string>
+    <string name="prompt_phone" translatable="false">اكتب رقم الهاتف</string>
+    <string name="prompt_mobile" translatable="false">اكتب رقم المحمول</string>
+    <string name="prompt_code" translatable="false">اكتب الكود الخاص بك</string>
+    <string name="action_sign_in">التسجيل</string>
+    <string name="action_sign_in_short">التسجيل</string>
+    <string name="error_invalid_email">البريد الالكتروني خاطئ</string>
+    <string name="error_invalid_password">كلمة السر قصيرة</string>
+    <string name="error_incorrect_password">كلمة السر خطأ</string>
+    <string name="Regestiration_Sheet">https://spreadsheets.google.com/feeds/list/1vCINRHNp8yrdvjJkn_KA5c_WnhoRVeczySwNA7yhRh0/3/public/values?alt=json</string>
+    <string name="Regestiration_Forms">"https://docs.google.com/forms/d/1m1dhRzcPNagVxO28uH-7uebB8sZ1gC1TyNx-iFVM498/formResponse"</string>
     <string name="error_field_required">This field is required</string>
     <string name="permission_rationale">"Contacts permissions are needed for providing email
     completions."</string>
