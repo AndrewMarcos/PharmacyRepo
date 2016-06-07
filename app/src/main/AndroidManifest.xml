@@ -10,6 +10,7 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+
         <activity
             android:name=".MainActivity"
             android:label="@string/app_name"
@@ -20,14 +21,22 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-        <activity android:name=".News" />
+
+        <activity android:name=".News"
+            android:parentActivityName=".MainActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".MainActivity" />
+        </activity>
+
         <activity android:name=".LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity>
+        </activity>git
+
         <activity
             android:name=".MedicalList"
             android:parentActivityName=".Medical_Data_Deliveries">
@@ -35,6 +44,7 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".Medical_Data_Deliveries" />
         </activity>
+
         <activity android:name=".Medical_Data_Deliveries"
             android:parentActivityName=".MainActivity">
             <meta-data
