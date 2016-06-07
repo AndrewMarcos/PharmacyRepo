@@ -50,11 +50,7 @@ public class MainMenuAdapter extends BaseAdapter {
         view = inflater.inflate(R.layout.mainmenu_gridview,null);
         ImageView image = (ImageView) view.findViewById(R.id.imageView);
         TextView textView = (TextView) view.findViewById(R.id.textView);
-        switch(i) {
-            case 0:Picasso.with(activity).load(images[0]).into(image);break;
-            case 1: Picasso.with(activity).load(images[1]).into(image);break;
-
-        }
+            Picasso.with(activity).load(images[i]).into(image);
         textView.setText(list[i]);
         return view;
 

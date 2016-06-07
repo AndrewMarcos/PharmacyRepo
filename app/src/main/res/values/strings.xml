@@ -24,11 +24,13 @@
     <string-array name="menu_items">
         <item>استشر طبيبك</item>
         <item>ارسل روشتة</item>
+        <item>أخبار</item>
     </string-array>
     <string-array name="menu_pics">
         <item>http://previews.123rf.com/images/vectorikart/vectorikart1506/vectorikart150600017/41171471-Modern-flat-vector-illustration-of-a-smiling-young-attractive-female-pharmacist-at-the-counter-in-a--Stock-Vector.jpg</item>
         <item>http://www.clker.com/cliparts/7/9/5/0/11971562571757911274tulipan_Pharmaceutical_carton_1.svg.med.png</item>
-        </string-array>
+        <item>https://pbs.twimg.com/profile_images/1268937965/Pharm_News.jpg</item>
+    </string-array>
     <string name="Delivery_Forms">https://docs.google.com/forms/d/1eSyEMUubmHMJsihpw_9sPhDIlhNJKvtl7LRrqf7gzSk/formResponse</string>
 
 </resources>

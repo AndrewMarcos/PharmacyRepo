@@ -34,6 +34,8 @@ public class MainActivity extends AppCompatActivity {
                     case 0:;break;
                     case 1:Intent in = new Intent(MainActivity.this, Medical_Data_Deliveries.class);
                         startActivity(in);break;
+                    case 2 :Intent intent = new Intent(MainActivity.this, News.class);
+                        startActivity(intent);break;
 
                 }
             }
