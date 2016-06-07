@@ -17,7 +17,8 @@
     <string name="error_incorrect_password">كلمة السر خطأ</string>
     <string name="Regestiration_Sheet">https://spreadsheets.google.com/feeds/list/1vCINRHNp8yrdvjJkn_KA5c_WnhoRVeczySwNA7yhRh0/2/public/values?alt=json</string>
     <string name="Regestiration_Forms">https://docs.google.com/forms/d/1m1dhRzcPNagVxO28uH-7uebB8sZ1gC1TyNx-iFVM498/formResponse</string>
-    <string name="error_field_required">This field is required</string>
+    <string name="error_field_required">https://spreadsheets.google.com/feeds/list/1vCINRHNp8yrdvjJkn_KA5c_WnhoRVeczySwNA7yhRh0/3/public/values?alt=json</string>
+    <string name="Get_NEWS">This field is required</string>
     <string name="permission_rationale">Contacts permissions are needed for providing email
     completions.</string>
     <string-array name="menu_items">
