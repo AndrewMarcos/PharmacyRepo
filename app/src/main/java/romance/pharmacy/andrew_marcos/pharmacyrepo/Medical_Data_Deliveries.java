@@ -45,7 +45,13 @@ public class Medical_Data_Deliveries extends AppCompatActivity {
         sendButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                postData();
+                Thread t = new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        postData();
+                    }
+                });
+                t.start();
                 for(int i=1;i<=messages.size();i++){
                     dbHelper.deleteOrder(i);
                 }
@@ -95,19 +101,19 @@ public class Medical_Data_Deliveries extends AppCompatActivity {
 
     public void postData() {
         String fullUrl = getResources().getString(R.string.Delivery_Forms);
-        Log.v("hi",fullUrl);
-        HttpRequest mReq = new HttpRequest();
-        Log.v("hello",messages.get(0));
+        HttpRequest mReq1 = new HttpRequest();
+
+
         String data = "entry.1820322615=" + URLEncoder.encode(Name)+"&"+ "entry.446360774=" + URLEncoder.encode(Address)+"&"+
                 "entry.724114047=" + URLEncoder.encode(Phone)+"&"+ "entry.79347183=" + URLEncoder.encode(MobileNo)+"&"+
-                "entry.726027365=" + URLEncoder.encode(Code);/*+"&" + "entry.589023351="+URLEncoder.encode(images.get(0))+"&"
-        +"entry.1504915603="+URLEncoder.encode(messages.get(0));
-         + "entry.1876034914="+URLEncoder.encode(images.get(1))+"&"
-                +"entry.449768214="+URLEncoder.encode(messages.get(1))+ "entry.787641434="+URLEncoder.encode(images.get(2))+"&"
-                +"entry.44068653="+URLEncoder.encode(messages.get(2))+ "entry.1537704762="+URLEncoder.encode(images.get(3))+"&"
-                +"entry.1756500272="+URLEncoder.encode(messages.get(3));*/
+                "entry.726027365=" + URLEncoder.encode(Code)+"&" + "entry.589023351="+URLEncoder.encode(images.get(0))+"&"
+        +"entry.1504915603="+URLEncoder.encode(messages.get(0))+"&" + "entry.1876034914="+URLEncoder.encode(images.get(1))+"&"
+                +"entry.449768214="+URLEncoder.encode(messages.get(1))+"&"+ "entry.787641434="+URLEncoder.encode(images.get(2))+"&"
+                +"entry.44068653="+URLEncoder.encode(messages.get(2))+ "&"+"entry.1537704762="+URLEncoder.encode(images.get(3))+"&"
+                +"entry.1756500272="+URLEncoder.encode(messages.get(3));
 
-        String response = mReq.sendPost(fullUrl, data);
+        String response1 = mReq1.sendPost(fullUrl, data);
+
     }
 
     @Override

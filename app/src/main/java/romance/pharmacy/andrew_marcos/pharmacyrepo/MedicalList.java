@@ -34,7 +34,6 @@ public class MedicalList extends AppCompatActivity {
         Cursor cursor = dbHelper.getOrder();
         try {
            length = cursor.getCount();
-            Log.e("helllo",length+"");
         }catch (Exception e){
            length =0;
         }
