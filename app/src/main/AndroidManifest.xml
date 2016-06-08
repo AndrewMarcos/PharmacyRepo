@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="romance.pharmacy.andrew_marcos.pharmacyrepo">
+    package="romance.pharmacy.andrew_marcos.pharmacyrepo" >
 
     <uses-permission android:name="android.permission.INTERNET" />
 
@@ -9,49 +9,47 @@
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
-
+        android:theme="@style/AppTheme" >
         <activity
             android:name=".MainActivity"
             android:label="@string/app_name"
-            android:theme="@style/AppTheme.NoActionBar">
+            android:theme="@style/AppTheme.NoActionBar" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-
-        <activity android:name=".News"
-            android:parentActivityName=".MainActivity">
+        <activity
+            android:name=".News"
+            android:parentActivityName=".MainActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".MainActivity" />
         </activity>
-
-        <activity android:name=".LoginActivity">
+        <activity android:name=".LoginActivity" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity
             android:name=".MedicalList"
-            android:parentActivityName=".Medical_Data_Deliveries">
+            android:parentActivityName=".Medical_Data_Deliveries" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".Medical_Data_Deliveries" />
         </activity>
-
-        <activity android:name=".Medical_Data_Deliveries"
-            android:parentActivityName=".MainActivity">
+        <activity
+            android:name=".Medical_Data_Deliveries"
+            android:parentActivityName=".MainActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".MainActivity" />
         </activity>
-
+        <activity android:name=".News_details" >
+        </activity>
     </application>
 
 </manifest>

@@ -15,12 +15,9 @@ public class Feed {
     @SerializedName("xmlns$openSearch")
     @Expose
     private String xmlns$openSearch;
-    @SerializedName("xmlns$batch")
+    @SerializedName("xmlns$gsx")
     @Expose
-    private String xmlns$batch;
-    @SerializedName("xmlns$gs")
-    @Expose
-    private String xmlns$gs;
+    private String xmlns$gsx;
     @SerializedName("id")
     @Expose
     private Id id;
@@ -29,16 +26,16 @@ public class Feed {
     private Updated updated;
     @SerializedName("category")
     @Expose
-    private List<Object> category = new ArrayList<Object>();
+    private List<romance.pharmacy.andrew_marcos.pharmacyrepo.jsondata.Category> category = new ArrayList<romance.pharmacy.andrew_marcos.pharmacyrepo.jsondata.Category>();
     @SerializedName("title")
     @Expose
     private Title title;
     @SerializedName("link")
     @Expose
-    private List<Object> link = new ArrayList<Object>();
+    private List<Link> link = new ArrayList<Link>();
     @SerializedName("author")
     @Expose
-    private List<Object> author = new ArrayList<Object>();
+    private List<Author> author = new ArrayList<Author>();
     @SerializedName("openSearch$totalResults")
     @Expose
     private OpenSearch$totalResults openSearch$totalResults;
@@ -47,10 +44,10 @@ public class Feed {
     private OpenSearch$startIndex openSearch$startIndex;
     @SerializedName("entry")
     @Expose
-    private List<Entry> entry = new ArrayList<Entry>();
+    private List<romance.pharmacy.andrew_marcos.pharmacyrepo.jsondata.Entry> entry = new ArrayList<romance.pharmacy.andrew_marcos.pharmacyrepo.jsondata.Entry>();
 
     /**
-     * 
+     *
      * @return
      *     The xmlns
      */
@@ -59,7 +56,7 @@ public class Feed {
     }
 
     /**
-     * 
+     *
      * @param xmlns
      *     The xmlns
      */
@@ -68,7 +65,7 @@ public class Feed {
     }
 
     /**
-     * 
+     *
      * @return
      *     The xmlns$openSearch
      */
@@ -77,7 +74,7 @@ public class Feed {
     }
 
     /**
-     * 
+     *
      * @param xmlns$openSearch
      *     The xmlns$openSearch
      */
@@ -86,43 +83,25 @@ public class Feed {
     }
 
     /**
-     * 
+     *
      * @return
-     *     The xmlns$batch
+     *     The xmlns$gsx
      */
-    public String getXmlns$batch() {
-        return xmlns$batch;
+    public String getXmlns$gsx() {
+        return xmlns$gsx;
     }
 
     /**
-     * 
-     * @param xmlns$batch
-     *     The xmlns$batch
+     *
+     * @param xmlns$gsx
+     *     The xmlns$gsx
      */
-    public void setXmlns$batch(String xmlns$batch) {
-        this.xmlns$batch = xmlns$batch;
+    public void setXmlns$gsx(String xmlns$gsx) {
+        this.xmlns$gsx = xmlns$gsx;
     }
 
     /**
-     * 
-     * @return
-     *     The xmlns$gs
-     */
-    public String getXmlns$gs() {
-        return xmlns$gs;
-    }
-
-    /**
-     * 
-     * @param xmlns$gs
-     *     The xmlns$gs
-     */
-    public void setXmlns$gs(String xmlns$gs) {
-        this.xmlns$gs = xmlns$gs;
-    }
-
-    /**
-     * 
+     *
      * @return
      *     The id
      */
@@ -131,7 +110,7 @@ public class Feed {
     }
 
     /**
-     * 
+     *
      * @param id
      *     The id
      */
@@ -140,7 +119,7 @@ public class Feed {
     }
 
     /**
-     * 
+     *
      * @return
      *     The updated
      */
@@ -149,7 +128,7 @@ public class Feed {
     }
 
     /**
-     * 
+     *
      * @param updated
      *     The updated
      */
@@ -158,25 +137,25 @@ public class Feed {
     }
 
     /**
-     * 
+     *
      * @return
      *     The category
      */
-    public List<Object> getCategory() {
+    public List<romance.pharmacy.andrew_marcos.pharmacyrepo.jsondata.Category> getCategory() {
         return category;
     }
 
     /**
-     * 
+     *
      * @param category
      *     The category
      */
-    public void setCategory(List<Object> category) {
+    public void setCategory(List<romance.pharmacy.andrew_marcos.pharmacyrepo.jsondata.Category> category) {
         this.category = category;
     }
 
     /**
-     * 
+     *
      * @return
      *     The title
      */
@@ -185,7 +164,7 @@ public class Feed {
     }
 
     /**
-     * 
+     *
      * @param title
      *     The title
      */
@@ -194,43 +173,43 @@ public class Feed {
     }
 
     /**
-     * 
+     *
      * @return
      *     The link
      */
-    public List<Object> getLink() {
+    public List<Link> getLink() {
         return link;
     }
 
     /**
-     * 
+     *
      * @param link
      *     The link
      */
-    public void setLink(List<Object> link) {
+    public void setLink(List<Link> link) {
         this.link = link;
     }
 
     /**
-     * 
+     *
      * @return
      *     The author
      */
-    public List<Object> getAuthor() {
+    public List<Author> getAuthor() {
         return author;
     }
 
     /**
-     * 
+     *
      * @param author
      *     The author
      */
-    public void setAuthor(List<Object> author) {
+    public void setAuthor(List<Author> author) {
         this.author = author;
     }
 
     /**
-     * 
+     *
      * @return
      *     The openSearch$totalResults
      */
@@ -239,7 +218,7 @@ public class Feed {
     }
 
     /**
-     * 
+     *
      * @param openSearch$totalResults
      *     The openSearch$totalResults
      */
@@ -248,7 +227,7 @@ public class Feed {
     }
 
     /**
-     * 
+     *
      * @return
      *     The openSearch$startIndex
      */
@@ -270,7 +249,7 @@ public class Feed {
      * @return
      *     The entry
      */
-    public List<Entry> getEntry() {
+    public List<romance.pharmacy.andrew_marcos.pharmacyrepo.jsondata.Entry> getEntry() {
         return entry;
     }
 

@@ -4,7 +4,7 @@ package romance.pharmacy.andrew_marcos.pharmacyrepo.jsondata;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class Updated {
+public class Name {
 
     @SerializedName("$t")
     @Expose
