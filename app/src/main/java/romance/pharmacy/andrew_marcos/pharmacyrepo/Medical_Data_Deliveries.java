@@ -27,6 +27,7 @@ public class Medical_Data_Deliveries extends AppCompatActivity {
     DBHelper dbHelper;
     ListView orderListView;
     String Name,Address,Phone,MobileNo,Code;
+    String data;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -57,7 +58,7 @@ public class Medical_Data_Deliveries extends AppCompatActivity {
                 }
                 messages.clear();
                 images.clear();
-                Toast.makeText(getBaseContext(),"قد تم إرسال طلبك",Toast.LENGTH_LONG);
+                Toast.makeText(Medical_Data_Deliveries.this,"قد تم إرسال طلبك",Toast.LENGTH_LONG);
                 Cursor cursor;
                 cursor = dbHelper.getOrder();
                 try {
@@ -70,6 +71,7 @@ public class Medical_Data_Deliveries extends AppCompatActivity {
                 } catch (Exception e) {
 
                 }
+                finish();
                // Delivery_Adapter delivery_adapter = new Delivery_Adapter(images,messages,this);
                 //orderListView.setAdapter(delivery_adapter);
             }
@@ -102,16 +104,43 @@ public class Medical_Data_Deliveries extends AppCompatActivity {
     public void postData() {
         String fullUrl = getResources().getString(R.string.Delivery_Forms);
         HttpRequest mReq1 = new HttpRequest();
+        Log.v("helllo",messages.size()+"");
+        data="";
+        switch(messages.size()) {
+            case 1:
+                data = "entry.1820322615=" + URLEncoder.encode(Name) + "&" + "entry.446360774=" + URLEncoder.encode(Address) + "&" +
+                        "entry.724114047=" + URLEncoder.encode(Phone) + "&" + "entry.79347183=" + URLEncoder.encode(MobileNo) + "&" +
+                        "entry.726027365=" + URLEncoder.encode(Code) + "&" + "entry.589023351=" + URLEncoder.encode(images.get(0)) + "&"
+                        + "entry.1504915603=" + URLEncoder.encode(messages.get(0)) + "&" + "entry.1876034914=" + URLEncoder.encode("") + "&"
+                        + "entry.449768214=" + URLEncoder.encode("") + "&" + "entry.787641434=" + URLEncoder.encode("") + "&"
+                        + "entry.44068653=" + URLEncoder.encode("") + "&" + "entry.1537704762=" + URLEncoder.encode("") + "&"
+                        + "entry.1756500272=" + URLEncoder.encode("");break;
+            case 2:
+                data = "entry.1820322615=" + URLEncoder.encode(Name) + "&" + "entry.446360774=" + URLEncoder.encode(Address) + "&" +
+                        "entry.724114047=" + URLEncoder.encode(Phone) + "&" + "entry.79347183=" + URLEncoder.encode(MobileNo) + "&" +
+                        "entry.726027365=" + URLEncoder.encode(Code) + "&" + "entry.589023351=" + URLEncoder.encode(images.get(0)) + "&"
+                        + "entry.1504915603=" + URLEncoder.encode(messages.get(0)) + "&" + "entry.1876034914=" + URLEncoder.encode(images.get(1)) + "&"
+                        + "entry.449768214=" + URLEncoder.encode(messages.get(1)) + "&" + "entry.787641434=" + URLEncoder.encode("") + "&"
+                        + "entry.44068653=" + URLEncoder.encode("") + "&" + "entry.1537704762=" + URLEncoder.encode("") + "&"
+                        + "entry.1756500272=" + URLEncoder.encode("");break;
 
-
-        String data = "entry.1820322615=" + URLEncoder.encode(Name)+"&"+ "entry.446360774=" + URLEncoder.encode(Address)+"&"+
-                "entry.724114047=" + URLEncoder.encode(Phone)+"&"+ "entry.79347183=" + URLEncoder.encode(MobileNo)+"&"+
-                "entry.726027365=" + URLEncoder.encode(Code)+"&" + "entry.589023351="+URLEncoder.encode(images.get(0))+"&"
-        +"entry.1504915603="+URLEncoder.encode(messages.get(0))+"&" + "entry.1876034914="+URLEncoder.encode(images.get(1))+"&"
-                +"entry.449768214="+URLEncoder.encode(messages.get(1))+"&"+ "entry.787641434="+URLEncoder.encode(images.get(2))+"&"
-                +"entry.44068653="+URLEncoder.encode(messages.get(2))+ "&"+"entry.1537704762="+URLEncoder.encode(images.get(3))+"&"
-                +"entry.1756500272="+URLEncoder.encode(messages.get(3));
-
+            case 3:
+                data = "entry.1820322615=" + URLEncoder.encode(Name) + "&" + "entry.446360774=" + URLEncoder.encode(Address) + "&" +
+                        "entry.724114047=" + URLEncoder.encode(Phone) + "&" + "entry.79347183=" + URLEncoder.encode(MobileNo) + "&" +
+                        "entry.726027365=" + URLEncoder.encode(Code) + "&" + "entry.589023351=" + URLEncoder.encode(images.get(0)) + "&"
+                        + "entry.1504915603=" + URLEncoder.encode(messages.get(0)) + "&" + "entry.1876034914=" + URLEncoder.encode(images.get(1)) + "&"
+                        + "entry.449768214=" + URLEncoder.encode(messages.get(1)) + "&" + "entry.787641434=" + URLEncoder.encode(images.get(2)) + "&"
+                        + "entry.44068653=" + URLEncoder.encode(messages.get(2)) + "&" + "entry.1537704762=" + URLEncoder.encode("") + "&"
+                        + "entry.1756500272=" + URLEncoder.encode("");break;
+            case 4:
+             data = "entry.1820322615=" + URLEncoder.encode(Name) + "&" + "entry.446360774=" + URLEncoder.encode(Address) + "&" +
+                    "entry.724114047=" + URLEncoder.encode(Phone) + "&" + "entry.79347183=" + URLEncoder.encode(MobileNo) + "&" +
+                    "entry.726027365=" + URLEncoder.encode(Code) + "&" + "entry.589023351=" + URLEncoder.encode(images.get(0)) + "&"
+                    + "entry.1504915603=" + URLEncoder.encode(messages.get(0)) + "&" + "entry.1876034914=" + URLEncoder.encode(images.get(1)) + "&"
+                    + "entry.449768214=" + URLEncoder.encode(messages.get(1)) + "&" + "entry.787641434=" + URLEncoder.encode(images.get(2)) + "&"
+                    + "entry.44068653=" + URLEncoder.encode(messages.get(2)) + "&" + "entry.1537704762=" + URLEncoder.encode(images.get(3)) + "&"
+                    + "entry.1756500272=" + URLEncoder.encode(messages.get(3));break;
+        }
         String response1 = mReq1.sendPost(fullUrl, data);
 
     }
