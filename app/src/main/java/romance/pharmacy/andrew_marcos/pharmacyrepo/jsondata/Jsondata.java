@@ -4,7 +4,7 @@ package romance.pharmacy.andrew_marcos.pharmacyrepo.jsondata;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class DataInJson {
+public class Jsondata {
 
     @SerializedName("version")
     @Expose
@@ -14,7 +14,7 @@ public class DataInJson {
     private String encoding;
     @SerializedName("feed")
     @Expose
-    private Feed feed;
+    private romance.pharmacy.andrew_marcos.pharmacyrepo.jsondata.Feed feed;
 
     /**
      * 
@@ -66,7 +66,7 @@ public class DataInJson {
      * @param feed
      *     The feed
      */
-    public void setFeed(Feed feed) {
+    public void setFeed(romance.pharmacy.andrew_marcos.pharmacyrepo.jsondata.Feed feed) {
         this.feed = feed;
     }
 

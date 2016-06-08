@@ -4,14 +4,35 @@ package romance.pharmacy.andrew_marcos.pharmacyrepo.jsondata;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class Title {
+public class Link_ {
 
+    @SerializedName("rel")
+    @Expose
+    private String rel;
     @SerializedName("type")
     @Expose
     private String type;
-    @SerializedName("$t")
+    @SerializedName("href")
     @Expose
-    private String $t;
+    private String href;
+
+    /**
+     * 
+     * @return
+     *     The rel
+     */
+    public String getRel() {
+        return rel;
+    }
+
+    /**
+     * 
+     * @param rel
+     *     The rel
+     */
+    public void setRel(String rel) {
+        this.rel = rel;
+    }
 
     /**
      * 
@@ -34,19 +55,19 @@ public class Title {
     /**
      * 
      * @return
-     *     The $t
+     *     The href
      */
-    public String get$t() {
-        return $t;
+    public String getHref() {
+        return href;
     }
 
     /**
      * 
-     * @param $t
-     *     The $t
+     * @param href
+     *     The href
      */
-    public void set$t(String $t) {
-        this.$t = $t;
+    public void setHref(String href) {
+        this.href = href;
     }
 
 }
