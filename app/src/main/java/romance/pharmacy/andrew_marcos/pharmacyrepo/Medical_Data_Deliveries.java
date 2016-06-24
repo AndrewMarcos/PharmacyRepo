@@ -4,41 +4,56 @@ import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
+import android.support.design.widget.FloatingActionButton;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
-import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
 
-import java.lang.reflect.Array;
-import java.net.URLEncoder;
-import java.util.ArrayList;
+import com.firebase.client.DataSnapshot;
+import com.firebase.client.Firebase;
+import com.firebase.client.FirebaseError;
+import com.firebase.client.Query;
+import com.firebase.client.ValueEventListener;
 
-import romance.pharmacy.andrew_marcos.pharmacyrepo.FormsSubmit.HttpRequest;
+import java.util.ArrayList;
 
 public class Medical_Data_Deliveries extends AppCompatActivity {
     public static ArrayList<String> images;
     public static ArrayList<String> messages;
     DBHelper dbHelper;
     ListView orderListView;
-    String Name,Address,Phone,MobileNo,Code;
+    String Name,Address,Phone,MobileNo,Code,id;
     String data;
+    Firebase myFirebaseRef;
+    Delivery_Adapter delivery_adapter;
+    long deliveryNo =0;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_medical_delivery);
         SharedPreferences sharedPref =  getApplicationContext().getSharedPreferences("SharedPreference", Activity.MODE_PRIVATE);
+        Query queryRef = MainActivity.myFirebaseRef.child("DeliveriesNo");
+        queryRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot snapshot) {
+                deliveryNo = Long.parseLong(snapshot.getValue().toString());
+
+
+            }
+            @Override public void onCancelled(FirebaseError error) {
+
+            }
+        });
         Name=sharedPref.getString("Name","");
         Address=sharedPref.getString("Address","");
         MobileNo=sharedPref.getString("Mobile","");
         Phone=sharedPref.getString("Phone","");
         Code=sharedPref.getString("Code","");
-        Name=sharedPref.getString("Name","");
+        id=sharedPref.getString("ID","");
         images = new ArrayList<String>();
         messages = new ArrayList<String>();
         dbHelper = new DBHelper(this);
@@ -72,8 +87,7 @@ public class Medical_Data_Deliveries extends AppCompatActivity {
 
                 }
                 finish();
-               // Delivery_Adapter delivery_adapter = new Delivery_Adapter(images,messages,this);
-                //orderListView.setAdapter(delivery_adapter);
+
             }
         });
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
@@ -97,14 +111,13 @@ public class Medical_Data_Deliveries extends AppCompatActivity {
         } catch (Exception e) {
 
         }
-        Delivery_Adapter delivery_adapter = new Delivery_Adapter(images,messages,this);
+        delivery_adapter = new Delivery_Adapter(images,messages,this);
         orderListView.setAdapter(delivery_adapter);
     }
 
     public void postData() {
-        String fullUrl = getResources().getString(R.string.Delivery_Forms);
+      /*  String fullUrl = getResources().getString(R.string.Delivery_Forms);
         HttpRequest mReq1 = new HttpRequest();
-        Log.v("helllo",messages.size()+"");
         data="";
         switch(messages.size()) {
             case 1:
@@ -141,7 +154,13 @@ public class Medical_Data_Deliveries extends AppCompatActivity {
                     + "entry.44068653=" + URLEncoder.encode(messages.get(2)) + "&" + "entry.1537704762=" + URLEncoder.encode(images.get(3)) + "&"
                     + "entry.1756500272=" + URLEncoder.encode(messages.get(3));break;
         }
-        String response1 = mReq1.sendPost(fullUrl, data);
+        String response1 = mReq1.sendPost(fullUrl, data);*/
+        MainActivity.myFirebaseRef.child("DeliveriesNo").setValue(deliveryNo+1);
+        MainActivity.myFirebaseRef.child("Delivery").child((deliveryNo+1)+"").child("PersonID").setValue(id);
+        for(int i=0;i<delivery_adapter.getCount();i++) {
+            MainActivity.myFirebaseRef.child("Delivery").child((deliveryNo+1)+"").child("Images").child(i+"").setValue(images.get(i).toString());
+            MainActivity.myFirebaseRef.child("Delivery").child((deliveryNo+1)+"").child("Messages").child(i+"").setValue(messages.get(i).toString());
+        }
 
     }
 

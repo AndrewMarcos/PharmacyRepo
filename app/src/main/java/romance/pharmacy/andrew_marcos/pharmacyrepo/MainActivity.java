@@ -2,24 +2,24 @@ package romance.pharmacy.andrew_marcos.pharmacyrepo;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.AdapterView;
 import android.widget.GridView;
 
-import java.util.ArrayList;
+import com.firebase.client.Firebase;
 
 public class MainActivity extends AppCompatActivity {
-
+    static Firebase myFirebaseRef;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        Firebase.setAndroidContext(this);
+        myFirebaseRef = new Firebase("https://romance-pharmacy.firebaseio.com/");
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         String[] menuList =getResources().getStringArray(R.array.menu_items);
