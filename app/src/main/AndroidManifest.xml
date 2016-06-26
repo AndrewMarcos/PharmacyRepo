@@ -34,6 +34,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         <activity
             android:name=".MedicalList"
             android:parentActivityName=".Medical_Data_Deliveries" >
@@ -41,6 +42,7 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".Medical_Data_Deliveries" />
         </activity>
+
         <activity
             android:name=".Medical_Data_Deliveries"
             android:parentActivityName=".MainActivity" >
@@ -48,8 +50,17 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".MainActivity" />
         </activity>
-        <activity android:name=".News_details" >
+
+        <activity android:name=".News_details"
+            android:parentActivityName=".News">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".News" />
         </activity>
+
+        <service
+            android:name=".Services.myAppNotificationService"
+            android:exported="false"/>
     </application>
 
 </manifest>

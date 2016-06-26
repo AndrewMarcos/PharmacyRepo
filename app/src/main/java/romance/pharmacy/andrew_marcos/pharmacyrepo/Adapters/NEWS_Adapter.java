@@ -58,7 +58,7 @@ public class NEWS_Adapter extends BaseAdapter {
         New.setText(dataNews.getText());
 
 
-        String photo= dataNews.getPic_1()+dataNews.getPic_2();
+        String photo= dataNews.getPic_1();
         byte[] decodedString = Base64.decode(photo, Base64.DEFAULT);
         Bitmap decodedByte = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
         im.setImageBitmap(decodedByte);

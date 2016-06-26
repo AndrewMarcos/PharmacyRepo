@@ -8,20 +8,17 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.ProgressBar;
-import android.widget.Toast;
 
-import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.StringRequest;
-import com.android.volley.toolbox.Volley;
-import com.google.gson.Gson;
+import com.firebase.client.DataSnapshot;
+import com.firebase.client.Firebase;
+import com.firebase.client.FirebaseError;
+import com.firebase.client.Query;
+import com.firebase.client.ValueEventListener;
 
 import java.util.ArrayList;
 
 import romance.pharmacy.andrew_marcos.pharmacyrepo.Adapters.NEWS_Adapter;
 import romance.pharmacy.andrew_marcos.pharmacyrepo.Data.data_news;
-import romance.pharmacy.andrew_marcos.pharmacyrepo.jsondata.Jsondata;
 
 public class News extends AppCompatActivity {
 
@@ -30,19 +27,62 @@ public class News extends AppCompatActivity {
     NEWS_Adapter news_adapter;
     ListView listView_news;
     ProgressBar progressBar;
+    Query queryRef;
+    DataSnapshot myChild;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_news);
+        Firebase myFirebase = new Firebase("https://romance-pharmacy.firebaseio.com/");
 
         listView_news = (ListView) findViewById(R.id.listView_NEWS);
         progressBar=(ProgressBar)findViewById(R.id.progressBar_NEWS);
 
         DataArray = new ArrayList<>();
 
+        Query queryRef = myFirebase.child("News");
+        queryRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(final DataSnapshot snapshot) {
+                DataArray.clear();
+                long size = snapshot.getChildrenCount();
+                Iterable<DataSnapshot> myChildren =  snapshot.getChildren();
+                while (myChildren.iterator().hasNext()) {
+                    int i =0;
+                    myChild = myChildren.iterator().next();
+                    try {
 
-        RequestQueue queue = Volley.newRequestQueue(News.this);
+                        DataArray.add(new data_news(myChild.child("Picture").getValue().toString(), myChild.child("Text").getValue().toString()));
+
+                    }catch (Exception e){
+                    }
+                    i++;
+                }
+                news_adapter = new NEWS_Adapter(DataArray, News.this);
+                listView_news.setAdapter(news_adapter);
+                listView_news.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                        Intent go_Details = new Intent(News.this, News_details.class);
+                          go_Details.putExtra("pic", snapshot.child((position+1)+"").child("Picture").getValue().toString());
+                          go_Details.putExtra("text", snapshot.child((position+1)+"").child("Text").getValue().toString());
+                        startActivity(go_Details);
+                    }
+                });
+
+                progressBar.setVisibility(View.GONE);
+            }
+
+            @Override
+            public void onCancelled(FirebaseError error) {
+
+            }
+
+        });
+
+       /* RequestQueue queue = Volley.newRequestQueue(News.this);
 
         String url = "https://spreadsheets.google.com/feeds/list/1vCINRHNp8yrdvjJkn_KA5c_WnhoRVeczySwNA7yhRh0/3/public/values?alt=json";
         StringRequest str = new StringRequest(url,
@@ -87,7 +127,8 @@ public class News extends AppCompatActivity {
                         Toast.makeText(News.this, error.getMessage(), Toast.LENGTH_LONG).show();
                     }
                 });
-        queue.add(str);
+        queue.add(str);*/
+
 
     }
 }

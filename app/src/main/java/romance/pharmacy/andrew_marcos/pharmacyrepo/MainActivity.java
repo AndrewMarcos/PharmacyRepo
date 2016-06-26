@@ -12,12 +12,18 @@ import android.widget.GridView;
 
 import com.firebase.client.Firebase;
 
+import romance.pharmacy.andrew_marcos.pharmacyrepo.Services.myAppNotificationService;
+
 public class MainActivity extends AppCompatActivity {
     static Firebase myFirebaseRef;
+    public static boolean onOpen;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        onOpen=true;
+        Intent mServiceIntent = new Intent(this, myAppNotificationService.class);
+        startService(mServiceIntent);
         Firebase.setAndroidContext(this);
         myFirebaseRef = new Firebase("https://romance-pharmacy.firebaseio.com/");
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);

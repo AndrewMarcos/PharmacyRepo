@@ -41,8 +41,6 @@ public class Medical_Data_Deliveries extends AppCompatActivity {
             @Override
             public void onDataChange(DataSnapshot snapshot) {
                 deliveryNo = Long.parseLong(snapshot.getValue().toString());
-
-
             }
             @Override public void onCancelled(FirebaseError error) {
 
