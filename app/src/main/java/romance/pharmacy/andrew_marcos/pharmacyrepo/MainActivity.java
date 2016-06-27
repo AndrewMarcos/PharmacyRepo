@@ -1,6 +1,8 @@
 package romance.pharmacy.andrew_marcos.pharmacyrepo;
 
+import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -21,15 +23,15 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        onOpen=true;
         Intent mServiceIntent = new Intent(this, myAppNotificationService.class);
         startService(mServiceIntent);
         Firebase.setAndroidContext(this);
-        myFirebaseRef = new Firebase("https://romance-pharmacy.firebaseio.com/");
+        final SharedPreferences sharedPref =  getApplicationContext().getSharedPreferences("SharedPreference", Activity.MODE_PRIVATE);
+        final SharedPreferences.Editor editor = sharedPref.edit();
+        myFirebaseRef = new Firebase(getString(R.string.MyFirebase_Database));
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         String[] menuList =getResources().getStringArray(R.array.menu_items);
-
         GridView mainGridView = (GridView)findViewById(R.id.gridView);
         MainMenuAdapter mainMenuAdapter = new MainMenuAdapter(menuList,this);
         mainGridView.setAdapter(mainMenuAdapter);

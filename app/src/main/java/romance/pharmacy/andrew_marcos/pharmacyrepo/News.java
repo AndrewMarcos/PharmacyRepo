@@ -1,6 +1,8 @@
 package romance.pharmacy.andrew_marcos.pharmacyrepo;
 
+import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.res.Resources;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -29,58 +31,18 @@ public class News extends AppCompatActivity {
     ProgressBar progressBar;
     Query queryRef;
     DataSnapshot myChild;
-
+    Firebase myFirebase;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_news);
-        Firebase myFirebase = new Firebase("https://romance-pharmacy.firebaseio.com/");
+        myFirebase= new Firebase(getString(R.string.MyFirebase_Database));
 
         listView_news = (ListView) findViewById(R.id.listView_NEWS);
         progressBar=(ProgressBar)findViewById(R.id.progressBar_NEWS);
 
-        DataArray = new ArrayList<>();
 
-        Query queryRef = myFirebase.child("News");
-        queryRef.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(final DataSnapshot snapshot) {
-                DataArray.clear();
-                long size = snapshot.getChildrenCount();
-                Iterable<DataSnapshot> myChildren =  snapshot.getChildren();
-                while (myChildren.iterator().hasNext()) {
-                    int i =0;
-                    myChild = myChildren.iterator().next();
-                    try {
-
-                        DataArray.add(new data_news(myChild.child("Picture").getValue().toString(), myChild.child("Text").getValue().toString()));
-
-                    }catch (Exception e){
-                    }
-                    i++;
-                }
-                news_adapter = new NEWS_Adapter(DataArray, News.this);
-                listView_news.setAdapter(news_adapter);
-                listView_news.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                    @Override
-                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                        Intent go_Details = new Intent(News.this, News_details.class);
-                          go_Details.putExtra("pic", snapshot.child((position+1)+"").child("Picture").getValue().toString());
-                          go_Details.putExtra("text", snapshot.child((position+1)+"").child("Text").getValue().toString());
-                        startActivity(go_Details);
-                    }
-                });
-
-                progressBar.setVisibility(View.GONE);
-            }
-
-            @Override
-            public void onCancelled(FirebaseError error) {
-
-            }
-
-        });
 
        /* RequestQueue queue = Volley.newRequestQueue(News.this);
 
@@ -129,6 +91,67 @@ public class News extends AppCompatActivity {
                 });
         queue.add(str);*/
 
+
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        final SharedPreferences sharedPref =  getApplicationContext().getSharedPreferences("SharedPreference", Activity.MODE_PRIVATE);
+        final SharedPreferences.Editor editor = sharedPref.edit();
+        DataArray = new ArrayList<>();
+
+        Query queryRef = myFirebase.child("News");
+        queryRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(final DataSnapshot snapshot) {
+                DataArray.clear();
+                long size = snapshot.getChildrenCount();
+                Iterable<DataSnapshot> myChildren =  snapshot.getChildren();
+                while (myChildren.iterator().hasNext()) {
+                    int i =0;
+                    myChild = myChildren.iterator().next();
+                    try {
+
+                        DataArray.add(new data_news(myChild.child("Picture").getValue().toString(), myChild.child("Text").getValue().toString()));
+
+                    }catch (Exception e){
+                    }
+                    i++;
+                }
+                news_adapter = new NEWS_Adapter(DataArray, News.this);
+                listView_news.setAdapter(news_adapter);
+                listView_news.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                        Intent go_Details = new Intent(News.this, News_details.class);
+                        go_Details.putExtra("pic", snapshot.child((position+1)+"").child("Picture").getValue().toString());
+                        go_Details.putExtra("text", snapshot.child((position+1)+"").child("Text").getValue().toString());
+                        startActivity(go_Details);
+                    }
+                });
+
+                progressBar.setVisibility(View.GONE);
+            }
+
+            @Override
+            public void onCancelled(FirebaseError error) {
+
+            }
+
+        });
+        Query queryRef2 = myFirebase.child("NewsNo");
+        queryRef2.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                editor.putString("NewsID",dataSnapshot.getValue().toString());
+            }
+
+            @Override
+            public void onCancelled(FirebaseError firebaseError) {
+
+            }
+        });
 
     }
 }

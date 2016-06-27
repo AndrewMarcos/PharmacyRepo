@@ -21,6 +21,7 @@
     <string name="Get_NEWS2">This field is required</string>
     <string name="permission_rationale">Contacts permissions are needed for providing email
     completions.</string>
+    <string name="MyFirebase_Database">https://romance-pharmacy.firebaseio.com/</string>
     <string-array name="menu_items">
         <item>استشر طبيبك</item>
         <item>ارسل روشتة</item>
