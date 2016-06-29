@@ -75,7 +75,7 @@ public class myAppNotificationService extends IntentService {
                                 // Set the icon, scrolling text and timestamp
                                 NotificationCompat.Builder mBuilder =
                                         new NotificationCompat.Builder(getBaseContext())
-                                                .setSmallIcon(R.drawable.logo)
+                                                .setSmallIcon(R.mipmap.ic_launcher)
                                                 .setContentTitle("News")
                                                 .setContentText("Guess What a new offer is on the way!").setAutoCancel(true);
                                 Intent resultIntent = new Intent(getBaseContext(), News.class);
