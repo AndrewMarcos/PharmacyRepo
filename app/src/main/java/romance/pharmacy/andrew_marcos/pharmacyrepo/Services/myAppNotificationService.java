@@ -68,7 +68,8 @@ public class myAppNotificationService extends IntentService {
                         public void onDataChange(DataSnapshot dataSnapshot) {
                             newsId = dataSnapshot.child("NewsNo").getValue().toString();
                             Log.e("Allo",newsId+"ana elgdid");
-                            if(!sharedPref.getString("NewsID",null).equals(newsId)) {
+                            if(!sharedPref.getString("NewsID","").equals(newsId)) {
+
                                 NotificationManager mNM;
                                 mNM = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
                                 // Set the icon, scrolling text and timestamp
