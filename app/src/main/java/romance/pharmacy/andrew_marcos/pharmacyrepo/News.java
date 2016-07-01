@@ -113,7 +113,9 @@ public class News extends AppCompatActivity {
                     myChild = myChildren.iterator().next();
                     try {
 
-                        DataArray.add(new data_news(myChild.child("Picture").getValue().toString(), myChild.child("Text").getValue().toString()));
+                        DataArray.add(new data_news(myChild.child("Picture").getValue().toString(),
+                                myChild.child("Text").getValue().toString(),
+                                        myChild.getKey().toString()));
 
                     }catch (Exception e){
                     }
@@ -125,8 +127,8 @@ public class News extends AppCompatActivity {
                     @Override
                     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                         Intent go_Details = new Intent(News.this, News_details.class);
-                        go_Details.putExtra("pic", snapshot.child((position+1)+"").child("Picture").getValue().toString());
-                        go_Details.putExtra("text", snapshot.child((position+1)+"").child("Text").getValue().toString());
+                        go_Details.putExtra("pic", snapshot.child(DataArray.get(position).getNews_id()).child("Picture").getValue().toString());
+                        go_Details.putExtra("text", snapshot.child(DataArray.get(position).getNews_id()).child("Text").getValue().toString());
                         startActivity(go_Details);
                     }
                 });

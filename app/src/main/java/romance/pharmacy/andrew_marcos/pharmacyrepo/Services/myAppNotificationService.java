@@ -67,13 +67,15 @@ public class myAppNotificationService extends IntentService {
                         @Override
                         public void onDataChange(DataSnapshot dataSnapshot) {
                             newsId = dataSnapshot.child("NewsNo").getValue().toString();
-                            if(!sharedPref.getString("NewsID",null).equals(newsId)) {
+                            Log.e("Allo",newsId+"ana elgdid");
+                            if(!sharedPref.getString("NewsID","").equals(newsId)) {
+
                                 NotificationManager mNM;
                                 mNM = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
                                 // Set the icon, scrolling text and timestamp
                                 NotificationCompat.Builder mBuilder =
                                         new NotificationCompat.Builder(getBaseContext())
-                                                .setSmallIcon(R.drawable.logo)
+                                                .setSmallIcon(R.mipmap.ic_launcher)
                                                 .setContentTitle("News")
                                                 .setContentText("Guess What a new offer is on the way!").setAutoCancel(true);
                                 Intent resultIntent = new Intent(getBaseContext(), News.class);
