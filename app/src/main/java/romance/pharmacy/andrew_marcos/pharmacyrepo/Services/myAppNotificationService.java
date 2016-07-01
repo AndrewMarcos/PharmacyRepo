@@ -67,7 +67,6 @@ public class myAppNotificationService extends IntentService {
                         @Override
                         public void onDataChange(DataSnapshot dataSnapshot) {
                             newsId = dataSnapshot.child("NewsNo").getValue().toString();
-                            Log.e("Allo",newsId+"ana elgdid");
                             if(!sharedPref.getString("NewsID",null).equals(newsId)) {
                                 NotificationManager mNM;
                                 mNM = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
