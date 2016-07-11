@@ -32,13 +32,13 @@ public class DBHelper extends SQLiteOpenHelper {
     public void onUpgrade(SQLiteDatabase sqLiteDatabase, int i, int i1) {
 
     }
+
     public boolean addOrder (int Order_ID, String Image_String,String Message){
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put("Order_ID",Order_ID);
         values.put("Image_String", Image_String);
         values.put("Message",Message);
-
         long movie_row = db.insert("Order_Items", null, values);
         db.close(); // Closing database connection
         if (movie_row==-1){
@@ -50,20 +50,15 @@ public class DBHelper extends SQLiteOpenHelper {
 
     public Cursor getOrder() {
         SQLiteDatabase db = this.getReadableDatabase();
-
         String selectQuery = "SELECT  * "  + " FROM Order_Items ";
         Cursor c = db.rawQuery(selectQuery, null);
-
         if (c == null || ! c.moveToFirst()) return null;
         return c;
-
     }
 
     public void deleteOrder(int id){
         SQLiteDatabase db = this.getReadableDatabase();
         db.delete("Order_Items","Order_ID = "+id,null);
     }
-
-
 
 }

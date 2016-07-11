@@ -1,13 +1,16 @@
 package romance.pharmacy.andrew_marcos.pharmacyrepo;
 
 import android.app.Activity;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
@@ -59,35 +62,49 @@ public class Medical_Data_Deliveries extends AppCompatActivity {
         sendButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Thread t = new Thread(new Runnable() {
-                    @Override
-                    public void run() {
-                        postData();
-                    }
-                });
-                t.start();
-                for(int i=1;i<=messages.size();i++){
-                    dbHelper.deleteOrder(i);
-                }
-                messages.clear();
-                images.clear();
-                Toast.makeText(Medical_Data_Deliveries.this,"قد تم إرسال طلبك",Toast.LENGTH_LONG);
-                Cursor cursor;
-                cursor = dbHelper.getOrder();
-                try {
-                    if (cursor.moveToFirst()) {
-                        do {
-                            images.add(cursor.getString(1));
-                            messages.add(cursor.getString(2));
-                        } while (cursor.moveToNext());
-                    }
-                } catch (Exception e) {
+                if (messages.size() != 0 && images.size() != 0) {
+                    messages.clear();
+                    images.clear();
+                    Toast.makeText(getBaseContext(), "قد تم إرسال طلبك", Toast.LENGTH_LONG).show();
+                    Cursor cursor;
+                    cursor = dbHelper.getOrder();
+                    try {
+                        if (cursor.moveToFirst()) {
+                            do {
+                                images.add(cursor.getString(1));
+                                messages.add(cursor.getString(2));
+                            } while (cursor.moveToNext());
+                        }
+                    } catch (Exception e) {
 
-                }
-                finish();
+                    }
+                    Cursor c = dbHelper.getOrder();
+                    try {
+                        if (c.moveToFirst()) {
+                            do {
+                                int id = c.getInt(0);
+                                dbHelper.deleteOrder(id);
 
+                            } while (c.moveToNext());
+                        }
+                    } catch (Exception e) {
+
+                    }
+
+                    Thread t = new Thread(new Runnable() {
+                        @Override
+                        public void run() {
+                            postData();
+                        }
+                    });
+                    t.start();
+                    finish();
+                }else {
+                    Toast.makeText(Medical_Data_Deliveries.this, "بالرجاء إضافة طلب جديد", Toast.LENGTH_LONG).show();
+                }
             }
         });
+
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -97,7 +114,7 @@ public class Medical_Data_Deliveries extends AppCompatActivity {
             }
         });
         orderListView = (ListView) findViewById(R.id.listView);
-        Cursor cursor;
+        final Cursor cursor;
         cursor = dbHelper.getOrder();
         try {
             if (cursor.moveToFirst()) {
@@ -111,7 +128,63 @@ public class Medical_Data_Deliveries extends AppCompatActivity {
         }
         delivery_adapter = new Delivery_Adapter(images,messages,this);
         orderListView.setAdapter(delivery_adapter);
+        orderListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, final int i, long l) {
+                final CharSequence[] items = {
+                        "تعديل", "حذف"
+                };
+
+                AlertDialog.Builder builder = new AlertDialog.Builder(Medical_Data_Deliveries.this);
+                builder.setTitle("اختر الأمر المناسب....");
+                builder.setItems(items, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int item) {
+
+                        if (items[item].equals("تعديل")) {
+                            Intent editIntent = new Intent(Medical_Data_Deliveries.this, MedicalList.class);
+                            Cursor c = dbHelper.getOrder();
+                            c.move(i);
+                            int id = c.getInt(0);
+                            editIntent.putExtra("image", c.getString(1));
+                            editIntent.putExtra("message", c.getString(2));
+                            editIntent.putExtra("edit", true);
+                            editIntent.putExtra("ID", id);
+                            startActivity(editIntent);
+
+                        } else if (items[item].equals("حذف")) {
+                            Cursor c = dbHelper.getOrder();
+                            c.move(i);
+                            int id = c.getInt(0);
+                            dbHelper.deleteOrder(id);
+                            messages.clear();
+                            images.clear();
+                            Cursor cursor;
+                            cursor = dbHelper.getOrder();
+                            try {
+                                if (cursor.moveToFirst()) {
+                                    do {
+                                        images.add(cursor.getString(1));
+                                        messages.add(cursor.getString(2));
+                                    } while (cursor.moveToNext());
+                                }
+                            } catch (Exception e) {
+
+                            }
+                            delivery_adapter = new Delivery_Adapter(images, messages, Medical_Data_Deliveries.this);
+                            orderListView.setAdapter(delivery_adapter);
+                        }
+                    }
+                });
+                AlertDialog alert = builder.create();
+                alert.show();
+
+            }
+
+        });
     }
+
+
+
 
     public void postData() {
       /*  String fullUrl = getResources().getString(R.string.Delivery_Forms);
