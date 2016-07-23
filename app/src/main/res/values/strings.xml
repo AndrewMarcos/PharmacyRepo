@@ -10,6 +10,8 @@
     <string name="prompt_phone" translatable="false">اكتب رقم الهاتف</string>
     <string name="prompt_mobile" translatable="false">اكتب رقم المحمول</string>
     <string name="prompt_code" translatable="false">اكتب الكود الخاص بك</string>
+    <string name="prompt_floor" translatable="false">الدور</string>
+    <string name="prompt_flat" translatable="false">الشقة</string>
     <string name="action_sign_in">التسجيل</string>
     <string name="action_sign_in_short">التسجيل</string>
     <string name="error_invalid_email">البريد الالكتروني خاطئ</string>

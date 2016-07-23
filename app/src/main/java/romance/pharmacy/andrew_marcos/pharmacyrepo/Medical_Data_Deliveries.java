@@ -21,7 +21,11 @@ import com.firebase.client.FirebaseError;
 import com.firebase.client.Query;
 import com.firebase.client.ValueEventListener;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Locale;
 
 public class Medical_Data_Deliveries extends AppCompatActivity {
     public static ArrayList<String> images;
@@ -62,45 +66,50 @@ public class Medical_Data_Deliveries extends AppCompatActivity {
         sendButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (messages.size() != 0 && images.size() != 0) {
-                    messages.clear();
-                    images.clear();
-                    Toast.makeText(getBaseContext(), "قد تم إرسال طلبك", Toast.LENGTH_LONG).show();
-                    Cursor cursor;
-                    cursor = dbHelper.getOrder();
-                    try {
-                        if (cursor.moveToFirst()) {
-                            do {
-                                images.add(cursor.getString(1));
-                                messages.add(cursor.getString(2));
-                            } while (cursor.moveToNext());
-                        }
-                    } catch (Exception e) {
+                if (LoginActivity.isConnected(Medical_Data_Deliveries.this)) {
+                    if (messages.size() != 0 && images.size() != 0) {
+                        messages.clear();
+                        images.clear();
+                        Toast.makeText(getBaseContext(), "قد تم إرسال طلبك", Toast.LENGTH_LONG).show();
+                        Cursor cursor;
+                        cursor = dbHelper.getOrder();
+                        try {
+                            if (cursor.moveToFirst()) {
+                                do {
+                                    images.add(cursor.getString(1));
+                                    messages.add(cursor.getString(2));
+                                } while (cursor.moveToNext());
+                            }
+                        } catch (Exception e) {
 
+                        }
+                        Cursor c = dbHelper.getOrder();
+                        try {
+                            if (c.moveToFirst()) {
+                                do {
+                                    int id = c.getInt(0);
+                                    dbHelper.deleteOrder(id);
+
+                                } while (c.moveToNext());
+                            }
+                        } catch (Exception e) {
+
+                        }
+
+                        Thread t = new Thread(new Runnable() {
+                            @Override
+                            public void run() {
+                                postData();
+                            }
+                        });
+                        t.start();
+                        finish();
+                    } else {
+                        Toast.makeText(Medical_Data_Deliveries.this, "بالرجاء إضافة طلب جديد", Toast.LENGTH_LONG).show();
                     }
-                    Cursor c = dbHelper.getOrder();
-                    try {
-                        if (c.moveToFirst()) {
-                            do {
-                                int id = c.getInt(0);
-                                dbHelper.deleteOrder(id);
+                }else{
+                    Toast.makeText(Medical_Data_Deliveries.this,"بالرجاء التأكد من إتصال الانترنت",Toast.LENGTH_LONG).show();
 
-                            } while (c.moveToNext());
-                        }
-                    } catch (Exception e) {
-
-                    }
-
-                    Thread t = new Thread(new Runnable() {
-                        @Override
-                        public void run() {
-                            postData();
-                        }
-                    });
-                    t.start();
-                    finish();
-                }else {
-                    Toast.makeText(Medical_Data_Deliveries.this, "بالرجاء إضافة طلب جديد", Toast.LENGTH_LONG).show();
                 }
             }
         });
@@ -226,13 +235,19 @@ public class Medical_Data_Deliveries extends AppCompatActivity {
                     + "entry.1756500272=" + URLEncoder.encode(messages.get(3));break;
         }
         String response1 = mReq1.sendPost(fullUrl, data);*/
-        MainActivity.myFirebaseRef.child("DeliveriesNo").setValue(deliveryNo+1);
+
+        Calendar c = Calendar.getInstance();
+        DateFormat dateFormat = new SimpleDateFormat("hh:mm a");
+        String dayLongName = c.getDisplayName(Calendar.DAY_OF_WEEK, Calendar.SHORT, Calendar.AM_PM);
         MainActivity.myFirebaseRef.child("Delivery").child((deliveryNo+1)+"").child("PersonID").setValue(id);
+        MainActivity.myFirebaseRef.child("Delivery").child((deliveryNo+1)+"").child("Time").setValue(" Date:  "+c.getTime());
+        MainActivity.myFirebaseRef.child("Delivery").child((deliveryNo+1)+"").child("Sender").setValue(Name);
+        MainActivity.myFirebaseRef.child("Delivery").child((deliveryNo+1)+"").child("senderCode").setValue(Code);
         for(int i=0;i<delivery_adapter.getCount();i++) {
             MainActivity.myFirebaseRef.child("Delivery").child((deliveryNo+1)+"").child("Images").child(i+"").setValue(images.get(i).toString());
             MainActivity.myFirebaseRef.child("Delivery").child((deliveryNo+1)+"").child("Messages").child(i+"").setValue(messages.get(i).toString());
         }
-
+        MainActivity.myFirebaseRef.child("DeliveriesNo").setValue(deliveryNo+1);
     }
 
     @Override

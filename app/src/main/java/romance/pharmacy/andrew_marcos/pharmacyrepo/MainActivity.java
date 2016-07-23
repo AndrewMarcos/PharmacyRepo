@@ -3,15 +3,14 @@ package romance.pharmacy.andrew_marcos.pharmacyrepo;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
-
 import com.firebase.client.Firebase;
-
 import romance.pharmacy.andrew_marcos.pharmacyrepo.Services.myAppNotificationService;
 
 public class MainActivity extends AppCompatActivity {
@@ -33,7 +32,15 @@ public class MainActivity extends AppCompatActivity {
         imageView_facebook=(ImageView)findViewById(R.id.imageView_facebook);
         imageView_map=(ImageView)findViewById(R.id.imageView_map);
         imageView_news=(ImageView)findViewById(R.id.imageView_News);
-
+        imageView_map.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Uri gmmIntentUri = Uri.parse("geo:0,0?q=Romance+Pharmacy");
+                Intent mapIntent = new Intent(Intent.ACTION_VIEW, gmmIntentUri);
+                mapIntent.setPackage("com.google.android.apps.maps");
+                startActivity(mapIntent);
+            }
+        });
         imageView_delivery.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -47,6 +54,24 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this, News.class);
                 startActivity(intent);
+            }
+        });
+        imageView_facebook.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Uri uri = Uri.parse("fb://facewebmodal/f?href=" + "https://www.facebook.com/Romance.pharmacy/");
+                Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+                startActivity(intent);
+            }
+        });
+        imageView_call.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(Intent.ACTION_DIAL);
+                intent.setData(Uri.parse("tel:" + "0222015544"));
+                if (intent.resolveActivity(getPackageManager()) != null) {
+                    startActivity(intent);
+                }
             }
         });
        // Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);

@@ -63,24 +63,56 @@
 
 
             </android.support.design.widget.TextInputLayout>
-            <android.support.design.widget.TextInputLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal"
+    android:weightSum="2">
 
-                <EditText
-                    android:id="@+id/phone"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="@string/prompt_phone"
-                    android:imeActionId="@+id/login"
-                    android:imeActionLabel="@string/action_sign_in_short"
-                    android:imeOptions="actionUnspecified"
-                    android:inputType="text"
-                    android:maxLines="1"
-                    android:singleLine="true" />
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="0sp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1">
+
+        <EditText
+            android:id="@+id/flatNo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/prompt_flat"
+            android:imeActionId="@+id/login"
+            android:imeActionLabel="@string/action_sign_in_short"
+            android:imeOptions="actionUnspecified"
+            android:inputType="text"
+            android:maxLines="1"
+            android:singleLine="true"
+            />
 
 
-            </android.support.design.widget.TextInputLayout>
+    </android.support.design.widget.TextInputLayout>
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="0sp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1">
+
+        <EditText
+            android:id="@+id/floorNo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/prompt_floor"
+            android:imeActionId="@+id/login"
+            android:imeActionLabel="@string/action_sign_in_short"
+            android:imeOptions="actionUnspecified"
+            android:inputType="text"
+            android:maxLines="1"
+            android:singleLine="true"
+            />
+
+
+    </android.support.design.widget.TextInputLayout>
+
+
+</LinearLayout>
+
             <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
@@ -99,6 +131,7 @@
 
 
             </android.support.design.widget.TextInputLayout>
+
             <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
@@ -117,6 +150,15 @@
 
 
             </android.support.design.widget.TextInputLayout>
+
+            <CheckBox
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="إذا كنت عميل جديد وليس لديك كود بالصيدلية بالرجاء الضغط هنا"
+                android:id="@+id/checkBox"
+                android:layout_gravity="right"
+
+                android:checked="false" />
 
             <Button
                 android:id="@+id/email_sign_in_button"
