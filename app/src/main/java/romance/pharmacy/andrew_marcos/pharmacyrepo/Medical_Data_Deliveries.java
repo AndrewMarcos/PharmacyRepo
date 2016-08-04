@@ -238,7 +238,8 @@ public class Medical_Data_Deliveries extends AppCompatActivity {
 
         Calendar c = Calendar.getInstance();
         DateFormat dateFormat = new SimpleDateFormat("hh:mm a");
-        String dayLongName = c.getDisplayName(Calendar.DAY_OF_WEEK, Calendar.SHORT, Calendar.AM_PM);
+        String dayLongName = c.getDisplayName(Calendar.DAY_OF_WEEK, Calendar.SHORT, Locale.getDefault());
+
         MainActivity.myFirebaseRef.child("Delivery").child((deliveryNo+1)+"").child("PersonID").setValue(id);
         MainActivity.myFirebaseRef.child("Delivery").child((deliveryNo+1)+"").child("Time").setValue(" Date:  "+c.getTime());
         MainActivity.myFirebaseRef.child("Delivery").child((deliveryNo+1)+"").child("Sender").setValue(Name);
