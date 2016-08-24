@@ -44,54 +44,6 @@ public class News extends AppCompatActivity {
 
 
 
-       /* RequestQueue queue = Volley.newRequestQueue(News.this);
-
-        String url = "https://spreadsheets.google.com/feeds/list/1vCINRHNp8yrdvjJkn_KA5c_WnhoRVeczySwNA7yhRh0/3/public/values?alt=json";
-        StringRequest str = new StringRequest(url,
-                new Response.Listener<String>() {
-                    @Override
-                    public void onResponse(String response) {
-
-
-                        Gson gson = new Gson();
-
-
-                        final Jsondata dd = gson.fromJson(response, Jsondata.class);
-
-
-                        for (int i = 0; i < dd.getFeed().getEntry().size(); i++) {
-
-                            DataArray.add(new data_news(dd.getFeed().getEntry().get(i).getGsx$pic1().get$t(),
-                                    dd.getFeed().getEntry().get(i).getGsx$pic2().get$t(),
-                                    dd.getFeed().getEntry().get(i).getGsx$text().get$t()));
-                        }
-
-                        news_adapter = new NEWS_Adapter(DataArray, News.this);
-                        listView_news.setAdapter(news_adapter);
-
-                        listView_news.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                            @Override
-                            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                                Intent go_Details = new Intent(News.this, News_details.class);
-                                go_Details.putExtra("pic", dd.getFeed().getEntry().get(position).getGsx$pic1().get$t() +
-                                        dd.getFeed().getEntry().get(position).getGsx$pic2().get$t());
-                                go_Details.putExtra("text", dd.getFeed().getEntry().get(position).getGsx$text().get$t());
-                                startActivity(go_Details);
-                            }
-                        });
-
-                        progressBar.setVisibility(View.GONE);
-                    }
-                },
-                new Response.ErrorListener() {
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-                        Toast.makeText(News.this, error.getMessage(), Toast.LENGTH_LONG).show();
-                    }
-                });
-        queue.add(str);*/
-
-
     }
 
     @Override

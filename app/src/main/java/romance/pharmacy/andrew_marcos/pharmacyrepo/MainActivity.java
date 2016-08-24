@@ -9,18 +9,20 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import com.firebase.client.Firebase;
 import romance.pharmacy.andrew_marcos.pharmacyrepo.Services.myAppNotificationService;
 
 public class MainActivity extends AppCompatActivity {
     static Firebase myFirebaseRef;
-    ImageView imageView_news,imageView_delivery,imageView_facebook,imageView_map,imageView_call;
+    ImageView imageView_facebook,imageView_map,imageView_call;
+    Button imageView_news,imageView_delivery;
     public static boolean onOpen;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.main);
         Intent mServiceIntent = new Intent(this, myAppNotificationService.class);
         startService(mServiceIntent);
         Firebase.setAndroidContext(this);
@@ -28,14 +30,14 @@ public class MainActivity extends AppCompatActivity {
         final SharedPreferences.Editor editor = sharedPref.edit();
         myFirebaseRef = new Firebase(getString(R.string.MyFirebase_Database));
         imageView_call=(ImageView)findViewById(R.id.imageView_call);
-        imageView_delivery=(ImageView)findViewById(R.id.imageView_deleviry);
+        imageView_delivery=(Button)findViewById(R.id.imageView_deleviry);
         imageView_facebook=(ImageView)findViewById(R.id.imageView_facebook);
         imageView_map=(ImageView)findViewById(R.id.imageView_map);
-        imageView_news=(ImageView)findViewById(R.id.imageView_News);
+        imageView_news=(Button)findViewById(R.id.imageView_News);
         imageView_map.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Uri gmmIntentUri = Uri.parse("geo:0,0?q=Romance+Pharmacy");
+                Uri gmmIntentUri = Uri.parse("geo:0,0?q=Mobil");
                 Intent mapIntent = new Intent(Intent.ACTION_VIEW, gmmIntentUri);
                 mapIntent.setPackage("com.google.android.apps.maps");
                 startActivity(mapIntent);
@@ -59,7 +61,7 @@ public class MainActivity extends AppCompatActivity {
         imageView_facebook.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Uri uri = Uri.parse("fb://facewebmodal/f?href=" + "https://www.facebook.com/Romance.pharmacy/");
+                Uri uri = Uri.parse("fb://facewebmodal/f?href=" + "https://www.facebook.com/");
                 Intent intent = new Intent(Intent.ACTION_VIEW, uri);
                 startActivity(intent);
             }
