@@ -11,8 +11,10 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+
 import com.firebase.client.Firebase;
-import romance.pharmacy.andrew_marcos.pharmacyrepo.Services.myAppNotificationService;
+import com.google.firebase.iid.FirebaseInstanceId;
+import com.google.firebase.messaging.FirebaseMessaging;
 
 public class MainActivity extends AppCompatActivity {
     static Firebase myFirebaseRef;
@@ -23,8 +25,11 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
-        Intent mServiceIntent = new Intent(this, myAppNotificationService.class);
-        startService(mServiceIntent);
+        /*Intent mServiceIntent = new Intent(this, myAppNotificationService.class);
+        startService(mServiceIntent);*/
+        System.out.println("Registration.onTokenRefresh TOKEN: " + FirebaseInstanceId.getInstance().getToken() );
+        FirebaseMessaging.getInstance().subscribeToTopic("news");
+
         Firebase.setAndroidContext(this);
         final SharedPreferences sharedPref =  getApplicationContext().getSharedPreferences("SharedPreference", Activity.MODE_PRIVATE);
         final SharedPreferences.Editor editor = sharedPref.edit();
@@ -76,25 +81,7 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
-       // Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        //setSupportActionBar(toolbar);
-       // String[] menuList =getResources().getStringArray(R.array.menu_items);
-        //GridView mainGridView = (GridView)findViewById(R.id.gridView);
-       // MainMenuAdapter mainMenuAdapter = new MainMenuAdapter(menuList,this);
-       // mainGridView.setAdapter(mainMenuAdapter);
-    /*    mainGridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                switch(i){
-                    case 0:;break;
-                    case 1:Intent in = new Intent(MainActivity.this, Medical_Data_Deliveries.class);
-                        startActivity(in);break;
-                    case 2 :Intent intent = new Intent(MainActivity.this, News.class);
-                        startActivity(intent);break;
 
-                }
-            }
-        });*/
 
     }
 
