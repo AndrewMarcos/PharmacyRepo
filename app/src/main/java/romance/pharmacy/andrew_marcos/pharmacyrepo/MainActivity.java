@@ -11,6 +11,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.firebase.client.Firebase;
 import com.google.firebase.iid.FirebaseInstanceId;
@@ -66,16 +67,18 @@ public class MainActivity extends AppCompatActivity {
         imageView_facebook.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Uri uri = Uri.parse("fb://facewebmodal/f?href=" + "https://www.facebook.com/");
-                Intent intent = new Intent(Intent.ACTION_VIEW, uri);
-                startActivity(intent);
+                /*String uri = "facebook://facebook.com";
+                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(uri));
+                startActivity(intent);*/
+
+                Toast.makeText(MainActivity.this,"test",Toast.LENGTH_SHORT).show();
             }
         });
         imageView_call.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(Intent.ACTION_DIAL);
-                intent.setData(Uri.parse("tel:" + "0222015544"));
+                intent.setData(Uri.parse("tel:" + "000"));
                 if (intent.resolveActivity(getPackageManager()) != null) {
                     startActivity(intent);
                 }

@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#fff"
+    android:background="@drawable/backgroundgradient"
     android:orientation="vertical"
     android:padding="10sp"
     android:weightSum="5">
@@ -10,18 +10,18 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0px"
-        android:layout_weight="1"></LinearLayout>
+        android:layout_weight="2"></LinearLayout>
+
 
     <Button
         android:id="@+id/imageView_News"
         android:layout_width="match_parent"
-        android:layout_height="0px"
-        android:layout_gravity="center"
-        android:layout_margin="15sp"
-        android:layout_weight="1"
-        android:src="@drawable/news"
+        android:layout_height="60dp"
+        android:background="@drawable/buttonshape"
+        android:layout_margin="20sp"
         android:text="اخبار"
-        android:textSize="40sp" />
+        android:textColor="#000"
+        android:textSize="32sp" />
 
 
     <LinearLayout
@@ -29,23 +29,24 @@
         android:layout_height="0px"
         android:layout_weight="0.2"></LinearLayout>
 
+
     <Button
         android:id="@+id/imageView_deleviry"
         android:layout_width="match_parent"
-        android:layout_height="0px"
-        android:layout_gravity="center"
-        android:layout_margin="15sp"
-        android:layout_weight="1"
-        android:src="@drawable/delivery"
-
+        android:layout_height="60dp"
+        android:background="@drawable/buttonshape"
+        android:layout_margin="20sp"
         android:text="ارسل روشته"
-        android:textSize="40sp" />
+        android:textColor="#000"
+        android:textSize="32sp" />
+
+
 
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0px"
-        android:layout_weight="1"></LinearLayout>
+        android:layout_weight="1.7"></LinearLayout>
 
 
     <LinearLayout
@@ -59,7 +60,7 @@
             android:id="@+id/imageView_facebook"
             android:layout_width="0px"
             android:layout_height="match_parent"
-            android:layout_margin="15sp"
+            android:layout_margin="5sp"
             android:layout_weight="1"
 
             android:src="@drawable/facebook" />
@@ -68,7 +69,7 @@
             android:id="@+id/imageView_map"
             android:layout_width="0px"
             android:layout_height="match_parent"
-            android:layout_margin="15sp"
+            android:layout_margin="5sp"
             android:layout_weight="1"
 
             android:src="@drawable/map" />
@@ -77,7 +78,7 @@
             android:id="@+id/imageView_call"
             android:layout_width="0px"
             android:layout_height="match_parent"
-            android:layout_margin="15sp"
+            android:layout_margin="5sp"
             android:layout_weight="1"
 
             android:src="@drawable/call" />
