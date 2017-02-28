@@ -37,6 +37,7 @@ public class News extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_news);
+        Firebase.setAndroidContext(this);
         myFirebase= new Firebase(getString(R.string.MyFirebase_Database));
 
         listView_news = (ListView) findViewById(R.id.listView_NEWS);
@@ -65,7 +66,7 @@ public class News extends AppCompatActivity {
                     myChild = myChildren.iterator().next();
                     try {
 
-                        DataArray.add(new data_news(myChild.child("Picture").getValue().toString(),
+                        DataArray.add(0,new data_news(myChild.child("Picture").getValue().toString(),
                                 myChild.child("Text").getValue().toString(),
                                         myChild.getKey().toString()));
 

@@ -8,6 +8,7 @@ import android.media.RingtoneManager;
 import android.support.v4.app.NotificationCompat;
 import android.util.Log;
 
+import com.google.firebase.crash.FirebaseCrash;
 import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
 
@@ -15,6 +16,7 @@ import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
 
 import romance.pharmacy.andrew_marcos.pharmacyrepo.MainActivity;
+import romance.pharmacy.andrew_marcos.pharmacyrepo.News;
 import romance.pharmacy.andrew_marcos.pharmacyrepo.R;
 
 
@@ -28,10 +30,13 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
     @Override
     public void onMessageReceived(RemoteMessage message) {
 
-        String image = message.getNotification().getIcon();
-        String title = message.getNotification().getTitle();
-        String text = message.getNotification().getBody();
-        String sound = message.getNotification().getSound();
+      //  FirebaseCrash.report(new Exception(message.getData().get("message")));
+
+      // String image = message.getNotification().getIcon();
+        String title = message.getData().get("title");
+        String text = message.getData().get("text");
+       // String sound = message.getNotification().getSound();
+
 
         int id = 0;
         Object obj = message.getData().get("id");
@@ -39,7 +44,9 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
             id = Integer.valueOf(obj.toString());
         }
 
-        this.sendNotification(new NotificationData(image, id, title, text, sound));
+       // this.sendNotification(new NotificationData(image, id, title, text, sound));
+
+        this.sendNotification(new NotificationData(null,771025567,title,text,"aa"));
     }
 
     /**
@@ -49,7 +56,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
      */
     private void sendNotification(NotificationData notificationData) {
 
-        Intent intent = new Intent(this, MainActivity.class);
+        Intent intent = new Intent(this, News.class);
         intent.putExtra(NotificationData.TEXT, notificationData.getTextMessage());
 
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);

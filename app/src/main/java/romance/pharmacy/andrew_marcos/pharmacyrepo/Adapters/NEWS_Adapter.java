@@ -10,12 +10,15 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import java.util.ArrayList;
 
 import romance.pharmacy.andrew_marcos.pharmacyrepo.Data.data_news;
 import romance.pharmacy.andrew_marcos.pharmacyrepo.R;
+
+import static java.security.AccessController.getContext;
 
 /**
  * Created by Andrew Samir on 6/7/2016.
@@ -55,43 +58,42 @@ public class NEWS_Adapter extends BaseAdapter {
 //        ImageView im = (ImageView) convertView.findViewById(R.id.imageViewNews);
 
 
-
-
         data_news dataNews = list.get(position);
         New.setText(dataNews.getText());
 
-        data_news x=list.get(position);
+        data_news x = list.get(position);
 
-        NamesAndView container=new NamesAndView();
-        container.name=x;
-        container.view=convertView;
+        NamesAndView container = new NamesAndView();
+        container.name = x;
+        container.view = convertView;
 
-        ImageLoader loaders=new ImageLoader();
+        ImageLoader loaders = new ImageLoader();
         loaders.execute(container);
 
 
         //String photo= dataNews.getPic_1();
         //byte[] decodedString = Base64.decode(photo, Base64.DEFAULT);
         //Bitmap decodedByte = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
-       // im.setImageBitmap(decodedByte);
+        // im.setImageBitmap(decodedByte);
 
 
         return convertView;
     }
-    private class ImageLoader extends AsyncTask<NamesAndView,Void,NamesAndView> {
+
+    private class ImageLoader extends AsyncTask<NamesAndView, Void, NamesAndView> {
 
 
         @Override
         protected NamesAndView doInBackground(NamesAndView... params) {
 
-            NamesAndView container=params[0];
-            data_news name=container.name;
+            NamesAndView container = params[0];
+            data_news name = container.name;
             try {
 
 
-                Bitmap bitmap=StringToBitMap(name.getPic_1());
+                Bitmap bitmap = StringToBitMap(name.getPic_1());
 
-                container.bitmap=bitmap;
+                container.bitmap = bitmap;
                 return container;
 
             } catch (Exception e) {
@@ -105,26 +107,28 @@ public class NEWS_Adapter extends BaseAdapter {
         protected void onPostExecute(NamesAndView namesAndView) {
 
 
-            ImageView im= (ImageView) namesAndView.view.findViewById(R.id.imageViewNews);
+            ImageView im = (ImageView) namesAndView.view.findViewById(R.id.imageViewNews);
 
-            im.setImageBitmap(namesAndView.bitmap);
+            if (namesAndView.bitmap != null) {
+                im.setImageBitmap(namesAndView.bitmap);
+            }
 
         }
     }
 
-    class NamesAndView{
+    class NamesAndView {
 
         public data_news name;
         public View view;
         public Bitmap bitmap;
     }
 
-    public Bitmap StringToBitMap(String encodedString){
+    public Bitmap StringToBitMap(String encodedString) {
         try {
-            byte [] encodeByte= Base64.decode(encodedString, Base64.DEFAULT);
-            Bitmap bitmap= BitmapFactory.decodeByteArray(encodeByte, 0, encodeByte.length);
+            byte[] encodeByte = Base64.decode(encodedString, Base64.DEFAULT);
+            Bitmap bitmap = BitmapFactory.decodeByteArray(encodeByte, 0, encodeByte.length);
             return bitmap;
-        } catch(Exception e) {
+        } catch (Exception e) {
             e.getMessage();
             return null;
         }
