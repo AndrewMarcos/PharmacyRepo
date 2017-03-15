@@ -19,27 +19,31 @@ import com.google.firebase.messaging.FirebaseMessaging;
 
 public class MainActivity extends AppCompatActivity {
     static Firebase myFirebaseRef;
-    ImageView imageView_facebook,imageView_map,imageView_call;
-    Button imageView_news,imageView_delivery;
+    ImageView imageView_facebook, imageView_map, imageView_call;
+    Button imageView_news, imageView_delivery;
     public static boolean onOpen;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
-        /*Intent mServiceIntent = new Intent(this, myAppNotificationService.class);
-        startService(mServiceIntent);*/
-        System.out.println("Registration.onTokenRefresh TOKEN: " + FirebaseInstanceId.getInstance().getToken() );
+        SharedPreferences prefs = getSharedPreferences(getString(R.string.MY_PREFS_NAME), MODE_PRIVATE);
+
+        Intent intent = new Intent(MainActivity.this, SignUp.class);
+        if (!prefs.getBoolean("SignedUp", false))
+            startActivity(intent);
+        System.out.println("Registration.onTokenRefresh TOKEN: " + FirebaseInstanceId.getInstance().getToken());
         FirebaseMessaging.getInstance().subscribeToTopic("news");
 
         Firebase.setAndroidContext(this);
-        final SharedPreferences sharedPref =  getApplicationContext().getSharedPreferences("SharedPreference", Activity.MODE_PRIVATE);
+        final SharedPreferences sharedPref = getApplicationContext().getSharedPreferences("SharedPreference", Activity.MODE_PRIVATE);
         final SharedPreferences.Editor editor = sharedPref.edit();
         myFirebaseRef = new Firebase(getString(R.string.MyFirebase_Database));
-        imageView_call=(ImageView)findViewById(R.id.imageView_call);
-        imageView_delivery=(Button)findViewById(R.id.imageView_deleviry);
-        imageView_facebook=(ImageView)findViewById(R.id.imageView_facebook);
-        imageView_map=(ImageView)findViewById(R.id.imageView_map);
-        imageView_news=(Button)findViewById(R.id.imageView_News);
+        imageView_call = (ImageView) findViewById(R.id.imageView_call);
+        imageView_delivery = (Button) findViewById(R.id.imageView_deleviry);
+        imageView_facebook = (ImageView) findViewById(R.id.imageView_facebook);
+        imageView_map = (ImageView) findViewById(R.id.imageView_map);
+        imageView_news = (Button) findViewById(R.id.imageView_News);
         imageView_map.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -67,18 +71,18 @@ public class MainActivity extends AppCompatActivity {
         imageView_facebook.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                /*String uri = "facebook://facebook.com";
+                String uri = "https://www.facebook.com/";
                 Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(uri));
-                startActivity(intent);*/
+                startActivity(intent);
 
-                Toast.makeText(MainActivity.this,"test",Toast.LENGTH_SHORT).show();
+                //  Toast.makeText(MainActivity.this,"test",Toast.LENGTH_SHORT).show();
             }
         });
         imageView_call.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(Intent.ACTION_DIAL);
-                intent.setData(Uri.parse("tel:" + "000"));
+                intent.setData(Uri.parse("tel:" + "00000"));
                 if (intent.resolveActivity(getPackageManager()) != null) {
                     startActivity(intent);
                 }

@@ -16,6 +16,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import java.io.ByteArrayOutputStream;
@@ -25,6 +26,7 @@ import java.io.InputStream;
 public class MedicalList extends AppCompatActivity {
     int CAMERA_PIC_REQUEST = 2;
     ImageButton imageButton;
+    ImageView imageView;
     String imageInBase64;
     DBHelper dbHelper;
     int length;
@@ -39,7 +41,8 @@ public class MedicalList extends AppCompatActivity {
         Button saveButton = (Button) findViewById(R.id.button);
         Cursor cursor = dbHelper.getOrder();
         imageButton = (ImageButton) findViewById(R.id.imageButton);
-        imageButton.setImageResource(R.drawable.document_add);
+         imageView= (ImageView) findViewById(R.id.set_image_);
+       // imageButton.setImageResource(R.drawable.document_add);
         final int id = getIntent().getIntExtra("ID",0);
         try {
            length = cursor.getCount();
@@ -56,7 +59,7 @@ public class MedicalList extends AppCompatActivity {
             Bitmap base64Bitmap = BitmapFactory.decodeByteArray(decodedString, 0,
                     decodedString.length);
             if(!imageInBase64.equals("No Image")) {
-                imageButton.setImageBitmap(base64Bitmap);
+                imageView.setImageBitmap(base64Bitmap);
             }
           }
             saveButton.setOnClickListener(new View.OnClickListener() {
@@ -115,7 +118,7 @@ public class MedicalList extends AppCompatActivity {
             image.compress(Bitmap.CompressFormat.JPEG, 100, byteArray);
             byte[] byteArr = byteArray.toByteArray();
             imageInBase64 = Base64.encodeToString(byteArr, Base64.DEFAULT);
-            imageButton.setImageBitmap(image);
+            imageView.setImageBitmap(image);
         }else if(requestCode == 1 && resultCode == RESULT_OK && data != null){
             Uri selectedImage = data.getData();
             InputStream imageStream = null;
@@ -130,7 +133,7 @@ public class MedicalList extends AppCompatActivity {
             myimage.compress(Bitmap.CompressFormat.JPEG, 100, byteArray1);
             byte[] byteArr1 = byteArray1.toByteArray();
             imageInBase64 = Base64.encodeToString(byteArr1, Base64.DEFAULT);
-            imageButton.setImageBitmap(myimage);
+            imageView.setImageBitmap(myimage);
 
         }else{
             finish();

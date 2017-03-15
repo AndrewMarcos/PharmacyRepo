@@ -1,23 +1,17 @@
 package romance.pharmacy.andrew_marcos.pharmacyrepo.Requests;
 
-import android.app.Activity;
 import android.content.Context;
-import android.content.SharedPreferences;
 import android.util.Log;
-import android.view.View;
 
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-import com.google.gson.Gson;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-
-import romance.pharmacy.andrew_marcos.pharmacyrepo.LoginActivity;
 
 /**
  * Created by MorcosS on 4/30/16.
@@ -38,7 +32,7 @@ public class UsersIds {
                             JSONObject jsonObject1= jsonObject.getJSONObject("feed");
                             JSONArray jsonArray=jsonObject1.getJSONArray("entry");
                             id=jsonArray.length();
-                            LoginActivity.checkedMySheet=true;
+                            //LoginActivity.checkedMySheet=true;
 
                            } catch (JSONException e) {
                             e.printStackTrace();

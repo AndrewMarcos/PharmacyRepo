@@ -60,7 +60,7 @@
             android:id="@+id/imageView_facebook"
             android:layout_width="0px"
             android:layout_height="match_parent"
-            android:layout_margin="5sp"
+            android:layout_margin="0sp"
             android:layout_weight="1"
 
             android:src="@drawable/facebook" />
@@ -69,7 +69,7 @@
             android:id="@+id/imageView_map"
             android:layout_width="0px"
             android:layout_height="match_parent"
-            android:layout_margin="5sp"
+            android:layout_margin="0sp"
             android:layout_weight="1"
 
             android:src="@drawable/map" />
@@ -78,7 +78,7 @@
             android:id="@+id/imageView_call"
             android:layout_width="0px"
             android:layout_height="match_parent"
-            android:layout_margin="5sp"
+            android:layout_margin="0sp"
             android:layout_weight="1"
 
             android:src="@drawable/call" />

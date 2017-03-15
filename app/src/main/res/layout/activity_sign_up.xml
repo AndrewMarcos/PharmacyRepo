@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:layout_margin="16dp"
+    android:weightSum="8"
+    tools:context="romance.pharmacy.andrew_marcos.pharmacyrepo.SignUp">
+
+
+
+    <EditText
+        android:id="@+id/editTextNameSignUp"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:ems="10"
+        android:padding="10dp"
+        android:inputType="textPersonName"
+        android:hint="الاسم" />
+
+
+
+    <EditText
+        android:id="@+id/editTextMobileSignUp"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:ems="10"
+        android:padding="10dp"
+
+        android:hint="الموبايل"
+        android:inputType="phone" />
+
+    <EditText
+        android:id="@+id/editTextHomeSignUp"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:ems="10"
+        android:padding="10dp"
+
+        android:hint="تليفون المنزل"
+        android:inputType="phone" />
+    <EditText
+        android:id="@+id/editTextAddressSignUp"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:hint="العنوان"
+        android:padding="10dp"
+
+        android:ems="10"
+        android:inputType="textMultiLine" />
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="0dp"
+    android:layout_weight="3"></LinearLayout>
+    <Button
+        android:id="@+id/buttonSignUp"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:text="SignUp" />
+</LinearLayout>

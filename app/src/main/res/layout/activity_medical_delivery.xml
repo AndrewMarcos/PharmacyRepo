@@ -10,8 +10,8 @@
 
     <android.support.design.widget.FloatingActionButton android:id="@+id/fab"
         android:layout_width="match_parent" android:layout_height="wrap_content"
-        android:layout_gravity="bottom|end" android:layout_marginBottom="75sp"
-        android:layout_marginRight="@dimen/activity_horizontal_margin"
+        android:layout_gravity="bottom|end" android:layout_marginBottom="40sp"
+        android:layout_marginRight="15dp"
         android:src="@android:drawable/ic_input_add"
         android:tint="@android:color/white"/>
 
