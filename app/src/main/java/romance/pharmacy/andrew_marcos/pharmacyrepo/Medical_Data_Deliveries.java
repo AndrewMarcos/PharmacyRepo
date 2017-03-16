@@ -50,7 +50,7 @@ public class Medical_Data_Deliveries extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_medical_delivery);
-        SharedPreferences sharedPref =  getApplicationContext().getSharedPreferences("SharedPreference", Activity.MODE_PRIVATE);
+        SharedPreferences sharedPref =  getApplicationContext().getSharedPreferences(getString(R.string.MY_PREFS_NAME), Activity.MODE_PRIVATE);
         Query queryRef = MainActivity.myFirebaseRef.child("DeliveriesNo");
         queryRef.addValueEventListener(new ValueEventListener() {
             @Override
@@ -61,12 +61,12 @@ public class Medical_Data_Deliveries extends AppCompatActivity {
 
             }
         });
-        Name=sharedPref.getString("Name","NoName");
+        Name=sharedPref.getString("name","NoName");
         Address=sharedPref.getString("Address","");
         MobileNo=sharedPref.getString("Mobile","");
         Phone=sharedPref.getString("Phone","");
         Code=sharedPref.getString("Code","");
-        id=sharedPref.getString("ID","0");
+        id=Long.toString(sharedPref.getLong("ID",0));
         images = new ArrayList<String>();
         messages = new ArrayList<String>();
         dbHelper = new DBHelper(this);

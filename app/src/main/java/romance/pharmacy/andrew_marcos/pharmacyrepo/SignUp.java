@@ -80,15 +80,18 @@ public class SignUp extends AppCompatActivity {
                     MainActivity.myFirebaseRef.child("SignIn").child((signInNo + 1) + "").child("Mobile").setValue(mobStr);
                     MainActivity.myFirebaseRef.child("SignIn").child((signInNo + 1) + "").child("Name").setValue(naStr);
                     MainActivity.myFirebaseRef.child("SignIn").child((signInNo + 1) + "").child("Phone").setValue(phoStr);
+                    final String finalNaStr = naStr;
+                    final Long x=signInNo;
                     MainActivity.myFirebaseRef.child("SignInNo").setValue(signInNo + 1, new Firebase.CompletionListener() {
 
                         @Override
                         public void onComplete(FirebaseError firebaseError, Firebase firebase) {
                             SharedPreferences.Editor editor = getSharedPreferences(getString(R.string.MY_PREFS_NAME), MODE_PRIVATE).edit();
                             editor.putBoolean("SignedUp", true);
+                            editor.putString("name", finalNaStr);
+                            editor.putLong("ID",x);
                             editor.commit();
                             SignUp.super.onBackPressed();
-
                         }
                     });
                 }
